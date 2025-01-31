@@ -1,0 +1,38 @@
+
+
+???
+net stop mysql
+net start mysql
+
+
+
+MySQL80
+net stop MySQL80
+net start MySQL80
+
+
+Type this in MySQL phpAdmin
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'PHP password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+IF THE ERROR LIKE THIS
+"This page isn’t working right now
+If the problem continues, contact the site owner.
+HTTP ERROR 405"
+
+run your html form project in chrome and private windows if success
+and still error in microsft edge public
+
+Clear Browser Cache and Cookies:
+
+1. In Edge, go to Settings > Privacy, search, and services.
+	Scroll down to Clear browsing data and click Choose what to clear.
+	Select Cached images and files and Cookies and other site data.
+	Click Clear now.
+2. Disable Extensions Temporarily: Sometimes, browser extensions can interfere with forms. To check if an extension is causing the issue:
+	Go to Settings > Extensions in Edge.
+	Turn off any active extensions and test the form again.
+3. Check Site Permissions:
+
+Make sure that there are no restrictions or special settings in Edge that block certain types of connections.
+Go to Settings > Site permissions and ensure that the site isn’t blocked from making requests. 
