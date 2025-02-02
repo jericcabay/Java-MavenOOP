@@ -1,0 +1,2 @@
+Disable Sparse Checkout Temporarily:
+git sparse-checkout disable
