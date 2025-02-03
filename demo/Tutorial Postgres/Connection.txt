@@ -1,0 +1,94 @@
+Step 1: add Dependencies in pom.xml
+Postgres Dependencies
+<dependency>
+	<groupId>org.springframework.boot</groupId>-->
+	<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+</dependency>
+
+Step 2: Add this in application.properties
+Postgres Connection
+    	spring.datasource.url=jdbc:postgresql://localhost:5432/student
+    	spring.datasource.username= postgres
+    	spring.datasource.password= Postgres password
+    	spring.jpa.hibernate.ddl-auto=create-drop
+    	spring.jpa.show-sql=true
+	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+    	spring.jpa.properties.hibernate.format_sql=true
+
+Step 3: CREATE DATABASE name in SQL SHELL(psql)
+
+example 
+CREATE DATABASE student;
+
+Step 4: Check the list of roles in SQL shell
+
+example
+\d
+output
+                             List of roles
+ Role name |                         Attributes
+-----------+------------------------------------------------------------
+ mydb      |
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS
+
+Step 5: Type grant all privilliges in SQL shell
+
+example 1
+GRANT ALL PRIVILEGES ON DATABASE "student" TO postgres;
+GRANT ALL PRIVILEGES ON DATABASE "student" TO mydb;
+OUTPUT: GRANT
+
+Step 6 Type \dt and you can see the table 
+example 
+
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | categories    | table | postgres
+ public | customers     | table | postgres
+ public | order_details | table | postgres
+ public | orders        | table | postgres
+ public | products      | table | postgres
+ public | testproducts  | table | postgres
+
+Step 7 type this \l optional 
+
+                                                                  List of databases
+   Name    |  Owner   | Encoding | Locale Provider |         Collate          |          Ctype           | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+--------------------------+--------------------------+--------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | English_Philippines.1252 | English_Philippines.1252 |        |           |
+ student   | postgres | UTF8     | libc            | English_Philippines.1252 | English_Philippines.1252 |        |           | =Tc/postgres         +
+           |          |          |                 |                          |                          |        |           | postgres=CTc/postgres+
+           |          |          |                 |                          |                          |        |           | mydb=CTc/postgres
+ template0 | postgres | UTF8     | libc            | English_Philippines.1252 | English_Philippines.1252 |        |           | =c/postgres          +
+           |          |          |                 |                          |                          |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | English_Philippines.1252 | English_Philippines.1252 |        |           | =c/postgres          +
+           |          |          |                 |                          |                          |        |           | postgres=CTc/postgres
+
+step 8 optional if you want to sure you are connected now 
+example 1: \c
+You are now connected to database "postgres" as user "postgres".
+example 2: \c student
+You are now connected to database "student" as user "postgres".
+
+Step 9 last step
+student=# \d
+                List of relations
+ Schema |       Name       |   Type   |  Owner
+
+--------+------------------+----------+----------
+ public | student          | table    | postgres
+ public | student_sequence | sequence | postgres
+(2 rows)
+
+          \d student
+                      Table "public.student"
+ Column |          Type          | Collation | Nullable | Default
+--------+------------------------+-----------+----------+---------
+ age    | integer                |           | not null |
+ dob    | date                   |           |          |
+ id     | bigint                 |           | not null |
+ email  | character varying(255) |           |          |
+ name   | character varying(255) |           |          |
+Indexes:
+    "student_pkey" PRIMARY KEY, btree (id)
